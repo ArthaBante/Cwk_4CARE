@@ -25,11 +25,11 @@ public class Teamwork
 
         details[4] = "Gohil";
         details[5] = "Denil";
-        details[6] = "SRN of member2";
+        details[6] = "21068447";
 
         details[7] = "Verma";
         details[8] = "Lakshay";
-        details[9] = "SRN of member3";
+        details[9] = "21069929";
 
 
         details[10] = "NA";

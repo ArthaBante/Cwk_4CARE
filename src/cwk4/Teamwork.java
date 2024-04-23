@@ -23,8 +23,8 @@ public class Teamwork
         details[2] = "Artha";
         details[3] = "21085597";
 
-        details[4] = "Gohil";
-        details[5] = "Denil";
+        details[4] = "";
+        details[5] = "";
         details[6] = "21068447";
 
         details[7] = "Verma";

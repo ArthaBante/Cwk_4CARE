@@ -32,10 +32,13 @@ public class Tournament implements CARE {
         setupChallenges();
     }
 
-    public Tournament(String viz, String filename) {
-        this(viz);
-        readChallenges(filename);
+    public Tournament(String vizierName, String filename) {
+        // Set up vizier's name and other initializations
+        this.vizier = vizierName;
+        readChallenges(filename);  // Load challenges from a file
+        setupChampions();          // Load champions by calling existing method
     }
+
 
     // Setup champions with default values
     private void setupChampions() {
@@ -187,6 +190,8 @@ public class Tournament implements CARE {
         }
     }
 
+
+
     public String getDisqualified() {
         List<Champion> disqualifiedChamps = new ArrayList<>();
         for (Champion champ : teamChampions) {
@@ -290,19 +295,21 @@ public class Tournament implements CARE {
     }
 
     public Tournament loadGame(String filename) {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
-            return (Tournament) ois.readObject(); // Deserialize the object
+        Tournament tournament = null;
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))) {
+            tournament = (Tournament) in.readObject(); // Deserializes the file into a Tournament object
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace(); // Handle error loading the game
-            return null;
+            e.printStackTrace();
         }
+        return tournament;
     }
 
+
     public void saveGame(String filename) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
-            oos.writeObject(this); // Serialize the tournament object to a file
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename))) {
+            out.writeObject(this); // Serializes the current instance of Tournament
         } catch (IOException e) {
-            e.printStackTrace(); // Handle error saving the game
+            e.printStackTrace();
         }
     }
 }

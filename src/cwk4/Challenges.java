@@ -62,6 +62,8 @@ public class Challenges implements Serializable {
         isCompleted = completed;
     }
 
+
+
     /**
      * Returns a string representation of the challenge details.
      * @return String representing the challenge's details.

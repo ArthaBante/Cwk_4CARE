@@ -102,24 +102,21 @@ public class Champion implements Serializable {
     @Override
     public String toString() {
         return
-                "name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", skillLevel=" + skillLevel +
-                ", isNecromancer=" + necromancer +
-                ", entryFee=" + entryFee +
-                ", speciality=" + speciality +
-                ", weapon=" + weapon +
-                ", isTalks=" + talks +
-                ", isActive=" + isActive +
-                ", isDisqualified=" + isDisqualified;
+                "Name: " + name + '\''+
+                ", Type: " + type + '\'' +
+                ", Skill: " + skillLevel +
+                ", Necromancer? " + necromancer +
+                ", Fee: " + entryFee +
+                ", Speciality: " + speciality +
+                ", Weapon: " + weapon +
+                ", Talks? " + talks +
+                ", Active? " + isActive +
+                ", Disqualified? " + isDisqualified;
     }
 
 
 
-    public boolean canDoChallenge() {
-        return true;
 
-    }
 
     class Wizard extends Champion {
 
@@ -158,5 +155,35 @@ class Dragon extends Champion {
         }
     }
 
+    /**
+     * Checks if the champion can participate in the given challenge.
+     *
+     * @param challenge The challenge to check.
+     * @return true if the champion can participate, otherwise false.
+     */
+    public boolean canDoChallenge(Challenges challenge) {
+        String challengeType = challenge.getType();
+
+        if (this instanceof Wizard) {
+            // Wizards can participate in any type of challenge
+            return true;
+        } else if (this instanceof Warrior) {
+            // Warriors can only participate in fight challenges
+            return challengeType.equals("Fight");
+        } else if (this instanceof Dragon) {
+            // Dragons can participate in fight challenges
+            // They can also participate in mystery challenges only if they can talk
+            if (challengeType.equals("Fight")) {
+                return true;
+            } else if (challengeType.equals("Mystery")) {
+                Dragon dragon = (Dragon) this; // Cast to Dragon type
+                return dragon.isTalks();
+            } else {
+                return false; // Dragons cannot participate in other types of challenges
+            }
+        } else {
+            return false; // Unknown champion type
+        }
+    }
 
 }

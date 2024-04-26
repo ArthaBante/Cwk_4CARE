@@ -57,26 +57,94 @@ public class GameUI
                         System.out.println("Not enough money in the treasury to enter " + champName + ".");
                     } else if (enterResult == -1) {
                         System.out.println("No such champion named " + champName + ".");
-                    }// provide code hereA
-                    // output should be meaningful
+                    }
 
 
                 }
-                else if (choice == 5)
-                {
-                    // provide code here
-                    // output should be meaningful
+                else if (choice == 5) {
+                    System.out.println("Available Challenges:");
+                    System.out.println(tr.getAllChallenges()); // Assumes getAllChallenges method exists
+
+                    // Ask user for the challenge number
+                    System.out.println("Enter the challenge number:");
+                    int challengeNumber;
+                    try {
+                        challengeNumber = Integer.parseInt(myIn.nextLine());
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid input for challenge number. Please enter a valid number.");
+                        return;
+                    }
+
+                    // Assume that the champion is set or activated elsewhere
+                    // Attempt to meet the challenge
+                    try {
+                        int challengeResult = tr.meetChallenge(challengeNumber);
+                        switch (challengeResult) {
+                            case 0:
+                                System.out.println("Challenge successfully met!");
+                                break;
+                            case 1:
+                                System.out.println("Challenge failed: Champion lacked the necessary skills.");
+                                break;
+                            case 2:
+                                System.out.println("Challenge failed: Other reasons.");
+                                break;
+                            case -1:
+                                System.out.println("Invalid challenge number.");
+                                break;
+                            default:
+                                System.out.println("Unexpected result.");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Error handling the challenge: " + e.getMessage());
+                    }
+
                 }
 
-                else if (choice==6)
-                {
-                    // provide code here
-                    // output should be meaningful
-                }  
-                else if (choice==7)
-                {
-                    // provide code here
+
+
+
+                else if (choice == 6) {
+                    System.out.println("Enter the name of the champion you wish to retire:");
+                    String championName = myIn.nextLine().trim();
+
+                    int endresult = tr.retireChampion(championName);
+                    switch (endresult) {
+                        case 0:
+                            System.out.println(championName + " has been successfully retired to the reserves.");
+                            break;
+                        case 1:
+                            System.out.println("Cannot retire " + championName + " because they are disqualified.");
+                            break;
+                        case -1:
+                            System.out.println("No such champion named " + championName + " in the vizier's team.");
+                            break;
+                        default:
+                            System.out.println("An unexpected error occurred.");
+                            break;
+                    }
                 }
+
+                else if (choice == 7) {
+                    System.out.println("Current Game State:");
+                    System.out.println("Vizier: " + tr.getVizier());
+                    System.out.println("Treasury Balance: " + tr.getMoney() + " gold");
+
+                    System.out.println("Team Champions:");
+                    if (!tr.getTeam().isEmpty()) {
+                        System.out.println(tr.getTeam());
+                    } else {
+                        System.out.println("No champions in the vizier's team.");
+                    }
+
+                    System.out.println("Champions in Reserve:");
+                    if (!tr.getReserve().isEmpty()) {
+                        System.out.println(tr.getReserve());
+                    } else {
+                        System.out.println("No champions in reserve.");
+                    }
+                }
+
                 else if (choice==8)
                 {
                     System.out.println(tr.getAllChallenges());

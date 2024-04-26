@@ -45,9 +45,21 @@ public class GameUI
                     System.out.println(tr.getChampionDetails(ref));
                 } 
                 else if (choice == 4)
-                {   
-                    // provide code here
+                {
+                    System.out.println("Enter Champion name to enter into vizier's team");
+                    String champName = myIn.nextLine().trim();
+                    int enterResult = tr.enterChampion(champName);
+                    if (enterResult == 0) {
+                        System.out.println(champName + " has been entered into the team.");
+                    } else if (enterResult == 1) {
+                        System.out.println(champName + " is not in reserve.");
+                    } else if (enterResult == 2) {
+                        System.out.println("Not enough money in the treasury to enter " + champName + ".");
+                    } else if (enterResult == -1) {
+                        System.out.println("No such champion named " + champName + ".");
+                    }// provide code hereA
                     // output should be meaningful
+
 
                 }
                 else if (choice == 5)
@@ -55,6 +67,7 @@ public class GameUI
                     // provide code here
                     // output should be meaningful
                 }
+
                 else if (choice==6)
                 {
                     // provide code here

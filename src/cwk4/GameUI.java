@@ -67,6 +67,7 @@ public class GameUI
                     // provide code here
                     // output should be meaningful
                 }
+
                 else if (choice==6)
                 {
                     // provide code here

@@ -113,7 +113,15 @@ public class Champion implements Serializable {
                 ", isActive=" + isActive +
                 ", isDisqualified=" + isDisqualified;
     }
-class Wizard extends Champion {
+
+
+
+    public boolean canDoChallenge() {
+        return true;
+
+    }
+
+    class Wizard extends Champion {
 
         public Wizard(String name, int skillLevel, boolean necromancer, int entryFee, String speciality) {
             super(name, "Wizard", skillLevel, necromancer, entryFee, speciality, "None", true);

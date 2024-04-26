@@ -106,7 +106,7 @@ public class GameUI
                 }
 
                 else if (choice == 7) {
-                    System.out.println("Game State Defeated?" + tr.isDefeated());
+                    System.out.println("Game State Defeated? " + tr.isDefeated());
                     System.out.println("Vizier: " + tr.getVizier());
                     System.out.println("Treasury Balance: " + tr.getMoney() + " gold");
 

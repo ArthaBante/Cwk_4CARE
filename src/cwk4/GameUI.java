@@ -75,29 +75,9 @@ public class GameUI
                         return;
                     }
 
-                    // Assume that the champion is set or activated elsewhere
-                    // Attempt to meet the challenge
-                    try {
-                        int challengeResult = tr.meetChallenge(challengeNumber);
-                        switch (challengeResult) {
-                            case 0:
-                                System.out.println("Challenge successfully met!");
-                                break;
-                            case 1:
-                                System.out.println("Challenge failed: Champion lacked the necessary skills.");
-                                break;
-                            case 2:
-                                System.out.println("Challenge failed: Other reasons.");
-                                break;
-                            case -1:
-                                System.out.println("Invalid challenge number.");
-                                break;
-                            default:
-                                System.out.println("Unexpected result.");
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Error handling the challenge: " + e.getMessage());
-                    }
+                    int challengeResult = tr.meetChallenge(challengeNumber);
+                    String resultMessage = processChallengeResult(challengeResult);
+                    System.out.println(resultMessage);
 
                 }
 

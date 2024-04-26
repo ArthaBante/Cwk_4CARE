@@ -28,7 +28,7 @@ public class Teamwork
         details[6] = "21068447";
 
         details[7] = "Verma";
-        details[8] = "Lakshay";
+        details[8] = "lakshay";
         details[9] = "21069929";
 
 
@@ -51,4 +51,3 @@ public class Teamwork
         }
     }
 }
-        
